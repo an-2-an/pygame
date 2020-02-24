@@ -4,13 +4,14 @@ import random
 SIZE = (800, 600)
 BLOCK_W = SIZE[0] // 8
 BLOCK_H = SIZE[1] // 10
+SPEED = (5, 10)
 
 x, y = random.randint(10, 70) * 10, SIZE[1] - 20
 
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
-TIMES = 30
+TIMES = 150
 run = True
 
 BLACK = ( 0, 0, 0)
@@ -42,8 +43,8 @@ class Block:
 
 blocks = []
 
-for row in range(3):
-    for col in range(8):
+for row in range(5):
+    for col in range(10):
         blocks.append(Block(col * BLOCK_W, row * BLOCK_H, BLOCK_W, BLOCK_H))
 
 class Ball:
@@ -51,8 +52,7 @@ class Ball:
         self.radius = 20
         self.x = x
         self.y = y
-        self.vx = 10
-        self.vy = -10
+        self.vx, self.vy = SPEED
         self.color = WHITE
     def draw(self):
         pygame.draw.circle(screen, self.color, (self.x, self.y), self.radius)
@@ -89,6 +89,9 @@ while run:
             ball.color = block.color
             blocks.pop(blocks.index(block))
 
-    draw()
+    if len(blocks) == 0:
+        pass
+    else:
+        draw()
 
 pygame.quit()
