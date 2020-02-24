@@ -2,7 +2,7 @@ import pygame
 import random
 
 SIZE = (800, 600)
-BLOCK_W = SIZE[0] // 8
+BLOCK_W = SIZE[0] // 10
 BLOCK_H = SIZE[1] // 10
 SPEED = (5, 10)
 
@@ -23,6 +23,8 @@ GREY = (128, 128, 128)
 CORAL = (100, 50, 31)
 BLUE = (0, 0, 255)
 COLORS = [RED, GREEN, BLUE, CORAL, YELLOW, GREY, WHITE]
+
+bg = pygame.image.load('bg.jpg')
 
 class Block:
 
@@ -67,7 +69,8 @@ class Ball:
 ball = Ball(x, y)
 
 def draw():
-    screen.fill(BLACK)
+    # screen.fill(BLACK)
+    screen.blit(bg, (0, 0))
     for block in blocks:
         block.draw()
     ball.draw()
